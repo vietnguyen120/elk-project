@@ -15,7 +15,7 @@ podman run --name es01 -d --env-file elk_env --net elastic -p 9200:9200 docker.e
 ES01_IP=$(podman inspect -f '{{range $k, $v := .NetworkSettings.Networks}}{{$v.IPAddress}}{{end}}' es01)
 
 #TESTING TO SEE VARIBLE WITH IP
-#echo "Elasticsearch IP: $ES01_IP"
+echo "Elasticsearch IP: $ES01_IP"
 
 until curl -k -s -u $ELASTIC_USERNAME:$ELASTIC_PASSWORD https://localhost:9200/ | grep -i "tagline"; do
   echo "Waiting for Elasticsearch to respond..."
